@@ -9,3 +9,24 @@ datasource db {
   // qual url do banco de dados
   url = env("DATABASE_URL")
 }
+
+// representação de um modelo de tabela
+model Modules {
+  id          String   @id @default(uuid())
+  name        String   @unique
+  description String
+  created_at  DateTime @default(now())
+
+  // o nome que minha tabela vai ter
+  @@map("modules")
+}
+
+model Courses {
+  id          String   @id @default(uuid())
+  name        String   @unique
+  description String?
+  duration    Int
+  created_at  DateTime @default(now())
+
+  @@map("courses")
+}
