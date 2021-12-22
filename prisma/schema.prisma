@@ -1,0 +1,11 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  // qual banco de dados será utilizado
+  provider = "postgresql"
+
+  // qual url do banco de dados
+  url = env("DATABASE_URL")
+}
