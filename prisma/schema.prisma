@@ -12,9 +12,13 @@ datasource db {
 
 // representação de um modelo de tabela
 model Modules {
+  // primary key onde o banco de dados é responsavel por gerar o valor uuid
   id          String   @id @default(uuid())
+  // @unique faz com que o campo seja unico
   name        String   @unique
   description String
+  // @default faz com que a responsabilidade por gerar o valor da coluna seja
+  // responsabilidade do banco de dados quando nao houver valor
   created_at  DateTime @default(now())
 
   // o nome que minha tabela vai ter
@@ -24,6 +28,7 @@ model Modules {
 model Courses {
   id          String   @id @default(uuid())
   name        String   @unique
+  // o ? diz que a coluna pode ser null
   description String?
   duration    Int
   created_at  DateTime @default(now())
