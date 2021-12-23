@@ -28,10 +28,19 @@ model Modules {
 model Courses {
   id          String   @id @default(uuid())
   name        String   @unique
-  // o ? diz que a coluna pode ser null
   description String?
   duration    Int
   created_at  DateTime @default(now())
+  teacher     Teachers @relation(fields: [teacher_id], references: [id])
+  teacher_id  String   @unique
 
   @@map("courses")
+}
+
+model Teachers {
+  id      String   @id @default(uuid())
+  name    String   @unique
+  courses Courses?
+
+  @@map("teachers")
 }
