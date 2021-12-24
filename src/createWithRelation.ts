@@ -51,6 +51,16 @@ async function main() {
             }
         }
     });
+
+    // Essa opção cria um course, relaciona um teacher já existente passando o id.
+    await prisma.courses.create({
+        data: {
+            duration: 200,
+            name: "Course of Prisma",
+            description: "Excelent course of Prisma",
+            teacher_id: "id_existente"
+        }
+    });
 }
 
 main();
