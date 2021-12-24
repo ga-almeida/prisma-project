@@ -21,20 +21,35 @@ model Modules {
   // responsabilidade do banco de dados quando nao houver valor
   created_at  DateTime @default(now())
 
+
+  ModulesCourses ModulesCourses[]
+
   // o nome que minha tabela vai ter
   @@map("modules")
 }
 
 model Courses {
-  id          String   @id @default(uuid())
-  name        String   @unique
-  description String?
-  duration    Int
-  created_at  DateTime @default(now())
-  teacher     Teachers @relation(fields: [teacher_id], references: [id])
-  teacher_id  String   @unique
+  id             String           @id @default(uuid())
+  name           String           @unique
+  description    String?
+  duration       Int
+  created_at     DateTime         @default(now())
+  teacher        Teachers         @relation(fields: [teacher_id], references: [id])
+  teacher_id     String           @unique
+  ModulesCourses ModulesCourses[]
 
   @@map("courses")
+}
+
+model ModulesCourses {
+  id         String   @id @default(uuid())
+  module     Modules  @relation(fields: [module_id], references: [id])
+  module_id  String
+  course     Courses  @relation(fields: [course_id], references: [id])
+  course_id  String
+  created_at DateTime @default(now())
+
+  @@map("modules_courses")
 }
 
 model Teachers {
