@@ -7,7 +7,8 @@ async function main() {
         data: {
             duration: 200,
             name: "Course of Prisma",
-            description: "Excelent course of Prisma"
+            description: "Excelent course of Prisma",
+            teacher_id: "id_existente"
         }
     });
 
